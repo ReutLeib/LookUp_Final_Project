@@ -1,4 +1,4 @@
-# JeMusic
+# LookUp
 
 Welcome to Client-side of LookUp application! <br>
 <p>
