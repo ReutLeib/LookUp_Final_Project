@@ -9,10 +9,10 @@ Welcome to LookUp application! <br>
 
 Install the Server-side of LookUp! <br>
 
-Clone the application to your directory, 
-change directory use CMD : 'cd LookUp_Server_side'.
-Install the application use CMD: npm install.
-Launch the application: 'node index'
+Clone the application to your directory,  <br>
+change directory use CMD : 'cd LookUp_Server_side'. <br>
+Install the application use CMD: npm install. <br>
+Launch the application: 'node index' <br>
 
 ```
 git clone https://github.com/ReutLeib/LookUp_Final_Project.git
@@ -24,9 +24,9 @@ node index
 
 Now, install the Cline-side of LookUp! <br>
 
-change directory use CMD : 'cd LookUp_Client_side/lookup_reactjs'.
-Install the application use CMD: npm install.
-Launch the application: 'npm start'
+change directory use CMD : 'cd LookUp_Client_side/lookup_reactjs'. <br>
+Install the application use CMD: npm install. <br>
+Launch the application: 'npm start' <br>
 
 ```
 cd ..                 // roll back
