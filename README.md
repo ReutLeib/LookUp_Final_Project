@@ -1,6 +1,7 @@
 # LookUp
 
-Welcome to Client-side of LookUp application! <br>
+Welcome to LookUp application! <br>
+
 <p>
   <img src="readMe/LookUpLogo.png" alt="Home page" style="padding-left: 49px" width="230"/>
 </p>
@@ -8,13 +9,29 @@ Welcome to Client-side of LookUp application! <br>
 ## Getting Started
 ### Installing
 
+Install the Server-side of LookUp! <br>
+
 Clone the application to your directory, 
+change directory use CMD : 'cd LookUp_Server_side'.
+Install the application use CMD: npm install.
+Launch the application: 'node index'
+
+```
+git clone https://github.com/ReutLeib/LookUp_Final_Project.git
+cd LookUp_Final_Project
+cd LookUp_Server_side
+npm install
+node index
+```
+
+Now, install the Cline-side of LookUp! <br>
+
 change directory use CMD : 'cd LookUp_Client_side/lookup_reactjs'.
 Install the application use CMD: npm install.
 Launch the application: 'npm start'
 
 ```
-git clone https://github.com/ReutLeib/LookUp_Final_Project.git
+cd ..                 // roll back
 cd LookUp_Client_side
 cd lookup_reactjs
 npm install
@@ -29,6 +46,7 @@ and remove row:
 "homepage": "http://shenkar.html5-book.co.il/...."
 ```
 The application will be available after saving. 
+
 
 ## Screens from Lookup application
 ### Login:
