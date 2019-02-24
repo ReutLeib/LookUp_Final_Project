@@ -1,10 +1,8 @@
-# LookUp
-
-Welcome to LookUp application! <br>
-
 <p>
   <img src="readMe/LookUpLogo.png" alt="Home page" style="padding-left: 49px" width="230"/>
 </p>
+
+Welcome to LookUp application! <br>
 
 ## Getting Started
 ### Installing
