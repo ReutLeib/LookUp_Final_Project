@@ -2,7 +2,7 @@
 
 Welcome to Client-side of LookUp application! <br>
 <p>
-  <img src="readMe/LookUpLogo.png" alt="Home page" style="padding-left: 49px" width="230"/>;
+  <img src="readMe/LookUpLogo.png" alt="Home page" style="padding-left: 49px" width="230"/>
 </p>
 
 ## Getting Started
