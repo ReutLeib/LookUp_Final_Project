@@ -54,9 +54,8 @@ app.post('/insertTrack/', trackCtl.insertTrack);
 **/
 app.delete('/deleteTrackBytitle/:title', trackCtl.deleteTrackBytitle);
 
-/**************** Map controller:  ****************/
 
-
+//////////////////////////////////////////////////////////////////////////////
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });
