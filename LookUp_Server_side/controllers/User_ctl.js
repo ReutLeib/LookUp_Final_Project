@@ -10,7 +10,10 @@ var   User =            require('../models/User_Schema'),
 
 exports.insertUser = (req, res) => {
 
-      console.log("Enter route(POST): /insertUsers");
+      console.log("---------------------------------------------------------------");
+      // console.log("Enter route(POST): /insertUsers");
+      console.log(req.body);
+      res.status(200).send("thanks");
 
       isUniqueEmail(req.body.email).then((result, error) => {
             if (result) {

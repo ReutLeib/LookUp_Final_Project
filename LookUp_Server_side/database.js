@@ -10,6 +10,8 @@ var options = {
         useMongoClient:true,
     }
 };
+
+// mongoose.connect('mongodb+srv://dbUser:dbPass@lookup-v2vtv.mongodb.net/test?retryWrites=true', {dbName: 'testDB'});
 mongoose.connect(consts.MLAB_KEY, options);
 const conn = mongoose.connection;//get default connection
 

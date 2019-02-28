@@ -1,5 +1,5 @@
 var   express         = require('express'),
-      event           = require('events'),
+    //   event           = require('events'),
       bodyParser      = require('body-parser'),
       fs              = require('fs'),
       userCtl         = require('./controllers/User_ctl.js'),
@@ -10,7 +10,7 @@ var   express         = require('express'),
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port',port);
-app.use('/', express.static('./public/html'));//for API 
+// app.use('/', express.static('./public/html'));//for API 
 
 app.use((req,res,next) => {
     res.header("Access-Control-Allow-Origin", "*");

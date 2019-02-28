@@ -1,51 +1,54 @@
-var mongoose  = require('mongoose');
-var schema = mongoose.Schema;   
+var mongoose = require('mongoose');
+var schema = mongoose.Schema;
 
 var User_schema = new mongoose.Schema({
-      
-      ID:{
+
+      ID: {
             type: Number,
             index: true,
-            required:true
+            required: true
       },
-      name:{
+      name: {
             type: String,
-            lowercase:true, 
-            required:true
+            lowercase: true,
+            required: true
       },
-      email:{
+      email: {
             type: String,
-            required:true
+            required: true
       },
-      password:{
+      password: {
             type: String,
-            required:true
+            required: true
       },
-      disables:{
+      disables: {
             type: Boolean
       },
-      birthDay:{
+      birthDay: {
             type: String
       },
-      profilePicture:{
+      profilePicture: {
             type: String,
             default: "url.."
       },
-      favoriteTracks:[{
-            type:mongoose.Schema.Types.ObjectId,ref:"Track"
+      favoriteTracks: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Track"
       }],
-      accessibility:{         // '0'-normal | '1'-blind | '2'-deaf
+      accessibility: { // '0'-normal | '1'-blind | '2'-deaf
             type: Number,
             required: true
       },
-      trackRecords:[{
-            type:mongoose.Schema.Types.ObjectId,ref:"Track"
+      trackRecords: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Track"
       }],
-      BLE:[{
-            type:mongoose.Schema.Types.ObjectId,ref:"BLE"
+      BLE: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "BLE"
       }]
-      
-    });
 
-var userSchema = mongoose.model('User',User_schema);
+});
+
+var userSchema = mongoose.model('User', User_schema);
 module.exports = userSchema;
