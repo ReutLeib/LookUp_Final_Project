@@ -22,13 +22,14 @@ var User_schema = new mongoose.Schema({
             required:true
       },
       disables:{
-
+            type: Boolean
       },
       birthDay:{
-            type: Date
+            type: String
       },
       profilePicture:{
-            type: String
+            type: String,
+            default: "url.."
       },
       favoriteTracks:[{
             type:mongoose.Schema.Types.ObjectId,ref:"Track"

@@ -1,18 +1,6 @@
 var mongoose  = require('mongoose');
 var schema = mongoose.Schema;   
 
-var Point2D = new mongoose.schema({
-      x:{
-            type: Number,
-            required:true 
-      },
-      y:{
-            type: Number,
-            required:true
-      }
-})
-
-
 var Track_schema = new mongoose.Schema({
       
       ID:{
@@ -21,14 +9,16 @@ var Track_schema = new mongoose.Schema({
             required:true
       },
       startPoint:{
-            type: Point2D
+            type:mongoose.Schema.Types.ObjectId,ref:"Point2D",
+            required:true 
       },
       endPoint:{
-            type: Point2D
+            type:mongoose.Schema.Types.ObjectId,ref:"Point2D",
+            required:true 
       },
-      middlePoint:[
-            Point2D
-      ],
+      middlePoint:[{
+            type:mongoose.Schema.Types.ObjectId,ref:"Point2D"
+      }],
       type:{
             type: String,
             required:true
@@ -43,10 +33,9 @@ var Track_schema = new mongoose.Schema({
       rating:{
             type: Number
       },
-      // TODO: ??
-      // changesDuringTrack:{
-
-      // },
+      changesDuringTrack:{
+            type: Boolean
+      },
       diffucultyLevel:{
             type: Number
       }

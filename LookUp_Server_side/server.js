@@ -2,6 +2,8 @@ var   express         = require('express'),
       event           = require('events'),
       bodyParser      = require('body-parser'),
       fs              = require('fs'),
+      userCtl         = require('./controllers/User_ctl.js'),
+      trackCtl        = require('./controllers/Track_ctl.js'),
       app             = express();
       port            = process.env.PORT || 3000;
 
@@ -17,22 +19,44 @@ app.use((req,res,next) => {
     next();
 });
 
-/*** All routes ***/
+/************************** All routes **************************/
 
-// User controller:
+/**************** User controller: ****************/
+
+/** insertUser 
+    values not null:
+        name, email, password, accessibility
+    values can be null:
+        disables, birthDay, profilePicture
+**/
+app.post('/insertUser/', userCtl.insertUser);
+
+/** deleteUserByEmail 
+    values not null:
+        email
+**/
+app.delete('/deleteUserByEmail/:email', userCtl.deleteUserByEmail);
 
 
-// Track controller:
+/**************** Track controller:  ****************/
+
+/** insertTrack 
+    values not null:
+        type, title, startPoint, endPoint
+    values can be null:
+        middlePoint, comment, rating, diffucultyLevel, changesDuringTrack 
+**/
+app.post('/insertTrack/', trackCtl.insertTrack);
+
+/** deleteTrackBytitle 
+    values not null:
+         title 
+**/
+app.delete('/deleteTrackBytitle/:title', trackCtl.deleteTrackBytitle);
+
+/**************** Map controller:  ****************/
 
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });
-
-
-
-      // Examples ROUTES:
-      // app.post('/insert/', userCtl.insertUser);                            // values: userName , password , name, age, city
-      // app.get('/getAll/:userName',  userCtl.getAllVideosByUserName);       // value : userName
-      // app.delete('/deleteUser/:userName', userCtl.deleteUserByUserName);   // value : userName
-      // app.put('/UpdateUser/:userName/:city', userCtl.UpdateCityByUserName) // value : userName, city

@@ -4,6 +4,7 @@
   "description": "LookUp Final Project",
   "main": "index.js",
   "dependencies": {
+    "aws-sdk": "^2.409.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
