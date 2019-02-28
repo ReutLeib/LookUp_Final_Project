@@ -89,8 +89,8 @@ exports.deleteUserByEmail = (req, res) => {
 
       console.log("Enter route(DELETE): /deleteUserByEmail");
       
-      deleteUser(req.params.title).then((result,error) => {
-            console.log("userName: " + req.params.userName);
+      deleteUser(req.params.email).then((result,error) => {
+            console.log("email: " + req.params.email);
               if(result){
                 // if result TRUE:  
                 console.log(`RESULT: ${result}`);
@@ -109,22 +109,22 @@ exports.deleteUserByEmail = (req, res) => {
 
 };
 
-var deleteUser = (_title) => {      // return booean
+var deleteUser = (_email) => {      // return booean
   
       console.log("Enter function: deleteUser");
       
       return new Promise((resolve, reject)=> {
   
-        console.log(`_title: ${_title}`);
+        console.log(`_email: ${_email}`);
     
-        User.findOne({title:_title}, (err, usr) => {
+        User.findOne({email:_email}, (err, usr) => {
             if (err) {
               console.log(projectStrings.ERROR_TITLE_NOT_EXIST);
               resolve(false);
             }
             else if(usr){
     
-              //foreach loop that go on all the user subject's and remove him.
+              //foreach loop that go on all the user favoriteTracks's and remove him.
               usr.subjects.forEach((element) =>{
                 deleteUserFromSubjectByUserName_UserSchema(_userName, element).then((result,error) => {
                   if(result){}
