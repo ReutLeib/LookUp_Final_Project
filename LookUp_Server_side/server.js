@@ -1,9 +1,8 @@
 var   express         = require('express'),
-      event           = require('events'),
       bodyParser      = require('body-parser'),
       fs              = require('fs'),
-      userCtl         = require('./controllers/User_ctl.js'),
-      trackCtl        = require('./controllers/Track_ctl.js'),
+      userController         = require('./controllers/UserController.js'),
+      trackController        = require('./controllers/TrackController.js'),
       app             = express();
       port            = process.env.PORT || 3000;
 
@@ -29,13 +28,13 @@ app.use((req,res,next) => {
     values can be null:
         disables, birthDay, profilePicture
 **/
-app.post('/insertUser/', userCtl.insertUser);
+app.post('/insertUser', userController.insertUser);
 
 /** deleteUserByEmail 
     values not null:
         email
 **/
-app.delete('/deleteUserByEmail/:email', userCtl.deleteUserByEmail);
+app.delete('/deleteUserByEmail/:email', userController.deleteUserByEmail);
 
 
 /**************** Track controller:  ****************/
@@ -46,13 +45,13 @@ app.delete('/deleteUserByEmail/:email', userCtl.deleteUserByEmail);
     values can be null:
         middlePoint, comment, rating, diffucultyLevel, changesDuringTrack 
 **/
-app.post('/insertTrack/', trackCtl.insertTrack);
+app.post('/insertTrack/', trackController.insertTrack);
 
 /** deleteTrackBytitle 
     values not null:
          title 
 **/
-app.delete('/deleteTrackBytitle/:title', trackCtl.deleteTrackBytitle);
+app.delete('/deleteTrackBytitle/:title', trackController.deleteTrackBytitle);
 
 
 //////////////////////////////////////////////////////////////////////////////

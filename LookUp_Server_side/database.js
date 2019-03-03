@@ -1,29 +1,44 @@
 // TODO: working with Amazon
-
+require('dotenv').config();
 const consts = require('./consts'),
       mongoose = require('mongoose');
       mongoose.Promise = global.Promise;
-//The server option auto_reconnect is defaulted to true
+
+// The server option auto_reconnect is defaulted to true
 var options = {
     server: {
         autoReconnect:true,
         useMongoClient:true,
     }
 };
-mongoose.connect(consts.MLAB_KEY, options);
-const conn = mongoose.connection;//get default connection
 
-// Event handlers for Mongoose
+// Connect to database with auto-reonnect enabled
+mongoose.connect(consts.MLAB_KEY, {dbName: 'testDB', autoReconnect: true, useNewUrlParser: true});
+
+// Get default connection
+const conn = mongoose.connection;
+
+mongoose.set('useCreateIndex', true);
+
+// When successfully connected
+conn.on('connected', () => {
+    console.log('Mongoose default connection open to ' + consts.MLAB_KEY);
+});
+
+// If the connection throws an error
 conn.on('error', (err) => {
-    console.log('Mongoose: Error: ' + err);
+    console.log('Mongoose default connection error: ' + err);
 });
-conn.on('open', () => {
-    console.log('Mongoose: Connection established');
-});
+
+// When the connection is disconnected
 conn.on('disconnected', () => {
-    console.log('Mongoose: Connection stopped, recconect');
-    mongoose.connect(consts.MLAB_KEY, options);
+    console.log('Mongoose default connection disconnected');
 });
-conn.on('reconnected', () => {
-    console.info('Mongoose reconnected!');
+
+// If the Node process ends, close the Mongoose connection 
+process.on('SIGINT', () => {
+    conn.close(() => {
+        console.log('Mongoose default connection disconnected through app termination');
+        process.exit(0);
+    });
 });
