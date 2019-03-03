@@ -19,8 +19,6 @@ app.use((req,res,next) => {
     next();
 });
 
-/************************** All routes **************************/
-
 /**************** User controller: ****************/
 
 /** insertUser
@@ -46,7 +44,17 @@ app.delete('/deleteUserByEmail/:email', userController.deleteUserByEmail);
     values can be null:
         middlePoint, comment, rating, diffucultyLevel, changesDuringTrack
 **/
-app.post('/insertTrack/', trackController.insertTrack);
+app.post('/insertTrack', trackController.insertTrack);
+
+/** getTrackByTitle
+    values required:
+         title
+**/
+app.get('/getTrackByTitle/:title', trackController.getTrackByTitle);
+
+/** getAllTracks
+**/
+app.get('/getAllTracks', trackController.getAllTracks);
 
 /** deleteTrackBytitle
     values required:
