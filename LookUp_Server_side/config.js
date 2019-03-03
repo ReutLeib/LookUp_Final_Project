@@ -3,7 +3,9 @@ module.exports = {
   // EXAMPlES for global variables and strings:
 
   // globVars: {
-  //   EXAMPLE: 0.4
+  //   CREATE_FUNC: 0.4,
+  //   FOLLOW_FUNC: 0.2,
+  //   PARTICIPENT_FUNC: 0.4
   // },
 
   errors: {
