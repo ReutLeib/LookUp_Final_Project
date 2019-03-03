@@ -2,7 +2,6 @@ var mongoose  = require('mongoose');
 
 var BLESchema = new mongoose.schema({
       id: mongoose.Schema.Types.ObjectId,
-      // ID: {type: Number, index: true, required: true},
       Longtitude: {type: Number, required: true},
       Latitude: {type: Number, required: true},
       deviceName: {type: String, required: true},
@@ -13,5 +12,4 @@ var BLESchema = new mongoose.schema({
     }
 );
 
-var BLE = mongoose.model("BLESceham", BLESchema, "BLE");
-module.exports = BLE;
+module.exports = mongoose.model("BLESceham", BLESchema, "BLE");

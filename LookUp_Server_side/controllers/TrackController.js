@@ -8,7 +8,16 @@ var   User              = require('../models/UserSchema');
 exports.insertTrack = (req,res)=>{
   
       console.log("Enter route(POST): /insertTrack");
-      res.status(200).send("OK");
+      const newTrack = new Track(req.body);
+      newUser.save(err => {
+            if (err){
+              console.log(err);
+              return res.status(500).send({ "Message": "Internal server error" });
+            }
+            console.log(`User ${req.body.email} has been created successfully`);
+            res.status(200).send(`User ${req.body.email} has been created successfully`);
+      });
+
 
 };
 

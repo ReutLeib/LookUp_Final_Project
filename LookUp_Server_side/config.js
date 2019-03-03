@@ -1,8 +1,6 @@
 module.exports = {
   
-  // EXAMPlES for global variables and strings:
-
-  // globVars: {
+  // globalVariables: {
   //   EXAMPLE: 0.4
   // },
 

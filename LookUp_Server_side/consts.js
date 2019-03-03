@@ -3,11 +3,8 @@ module.exports = {
 }
 
 /** https://cloud.mongodb.com/v2/5c77d75555385512f883dd20#clusters
- * 
  * username:
  * ronipolisanov@se.shenkar.ac.il
- * 
  * password:
  * LOOKUP!1
- * 
  * **/

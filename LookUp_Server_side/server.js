@@ -1,8 +1,8 @@
 var   express         = require('express'),
       bodyParser      = require('body-parser'),
       fs              = require('fs'),
-      userController         = require('./controllers/UserController.js'),
-      trackController        = require('./controllers/TrackController.js'),
+      userController  = require('./controllers/UserController.js'),
+      trackController = require('./controllers/TrackController.js'),
       app             = express();
       port            = process.env.PORT || 3000;
 
