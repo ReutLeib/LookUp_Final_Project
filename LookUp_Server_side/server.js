@@ -75,7 +75,7 @@ app.post('/insertPoint', PointController.insertPoint);
 //     values required:
 //          id
 // **/
-app.delete('/deletePointById/:id', PointController.deletePointById);
+// app.delete('/deletePointById/:id', PointController.deletePointById);
 
 
 

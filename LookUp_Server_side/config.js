@@ -15,6 +15,7 @@ module.exports = {
     ERROR_TITLE_NOT_EXIST: "title is not existing in database!",  
     ERROR_FIND_TRACK: "Someting went wrong with FIND TRACK!",
     ERROR_DELETE_TRACK: "Someting went wrong with DELETE TRACK!",  
+    ERROR_DELETE_TRACK_USER: "Someting went wrong with DELETE TRACK from user!",  
     // database errors
     ERROR_DB_CREATE_USER: "Someting went wrong with create user in database!"
   }

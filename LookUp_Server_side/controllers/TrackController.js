@@ -64,124 +64,81 @@ exports.getAllTracks = (req,res)=>{
 
 exports.deleteTrackBytitle = (req, res) => {
 
-//       console.log("Enter route(DELETE): /deleteTrackBytitle");
+      console.log("Enter route(DELETE): /deleteTrackBytitle");
 
-//       Track.findOne({title:req.params.title}, (err, track) => {
-//             if (err) {
-//               res.status(500).send(err);
-//             }
-//             else if(track){
-//                   // remove startPoint
-//                   // Points.findByIdAndRemove(track.startPoint._id,(err,doc) => {
-//                   //       if(err)
-//                   //             res.status(500).send(err);
-//                   // });
-//                   // // remove endPoint                  
-//                   // Points.findByIdAndRemove(track.endPoint._id,(err,doc) => {
-//                   //       if(err)
-//                   //             res.status(500).send(err);
-//                   // });
-//                   // // remove all middle Points 
-//                   // track.middlePoint.forEach((element)=>{
-//                   //       Points.findByIdAndRemove(element,(err,doc) => {
-//                   //             if(err)
-//                   //                   res.status(500).send(err);
-//                   //       });
-//                   // })
-//                   // find all users that have this track in "favoriteTracks" array and "trackRecords" array
-           
-           
-//                   // User.findByIdAndUpdate(id_,
-//                   //       {$pull: {participents: _userName}},
-//                   //       {safe: true, upsert: true},
-//                   //       (err, doc) =>{
-//                   //           if(err){
-//                   //           console.log(err);
-//                   //           resolve({});
-//                   //           }else{
-//                   //             console.log(`The user ${_userName} is deleted from ${doc.name} Subject.`);
-//                   //             resolve(doc);
-//                   //           }
-//                   //       }
-//                   //     );
-
-                       
-//             User.find({favoriteTracks:track._id}, (err, user) => {
-//                   user.forEach((usr)=>{
-//                         console.log("usr:");
-//                         console.log(usr); // do 3 times
-                        
-//                         User.deleteOne()
-
-//                         // usr.favoriteTracks.forEach((element)=>{
-//                         //       console.log("element:");
-//                         //       console.log(element);   // all elements not specific what i searched
-//                         // })
-
-//                         // deleteTrackFromUsers(usr._id).then((result,err)=>{
-//                         //       if(err)
-//                         //             res.status(500).send(config.errors.ERROR_DELETE_TRACK_USER);
-//                         //       res.status(200).send(result);
-//                         // })
-
-//                         // User.findByIdAndRemove({favoriteTracks:track._id}, (err,doc)=>{
-//                         //       if(err)
-//                         //             res.status(500).send(config.errors.ERROR_DELETE_TRACK_USER);
-//                         //       console.log("DOC:");
-//                         //       console.log(doc);
-//                         // });
-//                   })
-//             });
-
-         
-//               }
-//             else
-//                   res.status(500).send(config.errors.ERROR_DELETE_TRACK);
-//             });
-//       res.status(200).send("OK");
-            
+      Track.findOne({title:req.params.title}, (err, track) => {
+            if (err) {
+              res.status(500).send(err);
+            }
+            else if(track){
+                  // remove startPoint
+                  Points.findByIdAndRemove(track.startPoint._id, err => {
+                        if(err)
+                              res.status(500).send(err);
+                  });
+                  // remove endPoint                  
+                  Points.findByIdAndRemove(track.endPoint._id, err => {
+                        if(err)
+                              res.status(500).send(err);
+                  });
+                  // remove all middle Points 
+                  track.middlePoint.forEach((element)=>{
+                        Points.findByIdAndRemove(element, err => {
+                              if(err)
+                                    res.status(500).send(err);
+                        });
+                  })
+                  // find all users that have this track in "favoriteTracks" array and "trackRecords" array
+                  deleteTrackFromUsers(track._id).then((result,err)=>{
+                        if(result)
+                              res.status(200).send("OK");
+                        res.status(500).send(config.errors.ERROR_DELETE_TRACK);
+                  });
+                  // TODO: remove specific track!
+              }
+            else
+                  res.status(500).send(config.errors.ERROR_DELETE_TRACK);
+            });
 };
 
 
-// var deleteTrackFromUsers = (id_) => {
+var deleteTrackFromUsers = (id) => {            // return boolean
   
-//       return new Promise((resolve, reject)=> {
-//             console.log("function: deleteTrackFromUsers");
+      return new Promise((resolve, reject)=> {
+            console.log("function: deleteTrackFromUsers");
        
-//             User.findByIdAndUpdate(id_,
-//                   {$pull: {favoriteTracks: id_}},
-//                   {safe: true, upsert: true},
-//                   (err, doc) =>{
-//                       if(err){
-//                             console.log(err);
-//                             resolve({});
-//                       }
-//                       console.log("DIC:");
-//                       console.log(doc);
-//                   }
-//                 );
-     
-//         });
-//     }; 
-  
-//     var deleteUserFromSubjectByUserName_UserSchema = (_userName,id_) => {
-  
-//       return new Promise((resolve, reject)=> {
-//         console.log(`_userName,id_: ${_userName,id_}`);
-    
-//         Subject.findByIdAndUpdate(id_,
-//           {$pull: {participents: _userName}},
-//           {safe: true, upsert: true},
-//           (err, doc) =>{
-//               if(err){
-//               console.log(err);
-//               resolve({});
-//               }else{
-//                 console.log(`The user ${_userName} is deleted from ${doc.name} Subject.`);
-//                 resolve(doc);
-//               }
-//           }
-//         );
-    
-//       });
-//     };
+            User.find({favoriteTracks:id}, (err, user) => {
+                  user.forEach((usr)=>{
+                        usr.favoriteTracks.forEach((element) =>{
+                              var cond = {favoriteTracks:element},
+                              update = {$pull:{favoriteTracks:id}},
+                              opts = {multi: true};
+                  
+                              User.update(cond,update,opts, err => {
+                                    if(err){
+                                          console.log(err);
+                                          return false;
+                                    }
+                              });
+                        }); 
+                  })
+            });  
+            User.find({trackRecords:id}, (err, user) => {
+                  user.forEach((usr)=>{
+                        usr.trackRecords.forEach((element) =>{
+                              var cond = {trackRecords:element},
+                              update = {$pull:{trackRecords:id}},
+                              opts = {multi: true};
+                  
+                              User.update(cond,update,opts, err => {
+                                    if(err){
+                                          console.log(err);
+                                          return false;
+                                    }
+                              });
+                        }); 
+                  })
+            });
+            return true; 
+        });
+}; 
