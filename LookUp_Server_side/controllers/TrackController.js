@@ -17,23 +17,7 @@ exports.insertTrack = (req,res)=>{
             console.log(`Track ${req.body.title} has been created successfully`);
             res.status(200).send(`Track ${req.body.title} has been created successfully`);
       });
-
-
 };
-
-// exports.isUnique = (_title) => {    // return boolean
-
-//       Track.find({title:_title}, (err,track)=>{
-//             if(err){
-//                   console.log(err);
-//                   return false;
-//             }
-//             if(track == "")   // not found
-//                   return true;
-//             else  // title exist
-//                   return false;
-//       })
-// } 
 
 ////////////////////////////////////////////////////////////////////////////////////
 

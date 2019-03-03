@@ -7,7 +7,7 @@ function isUnique(_title){
                   console.log(err);
                   return false;
             }
-            if(track == "")   // not found
+            if(track == "")   // not found - title is unique
                   return true;
             else  // title exist
                   return false;

@@ -3,7 +3,7 @@ var   express         = require('express'),
       fs              = require('fs'),
       userController  = require('./controllers/UserController'),
       trackController = require('./controllers/TrackController'),
-      PointController = require('./controllers/PointsController'),
+      PointController = require('./controllers/PointController'),
       app             = express();
       port            = process.env.PORT || 3000;
 
@@ -55,7 +55,7 @@ app.post('/insertTrack/', trackController.insertTrack);
 app.delete('/deleteTrackBytitle/:title', trackController.deleteTrackBytitle);
 
 
-/**************** PointsController controller:  ****************/
+/**************** PointController controller:  ****************/
 
 // /** insertPoint
 //     values required:
