@@ -24,7 +24,7 @@ app.use((req,res,next) => {
 /**************** User controller: ****************/
 
 /** insertUser
-    values not null:
+    values required:
         name, email, password, accessibility
     values can be null:
         disables, birthDay, profilePicture
@@ -32,7 +32,7 @@ app.use((req,res,next) => {
 app.post('/insertUser', userController.insertUser);
 
 /** deleteUserByEmail
-    values not null:
+    values required:
         email
 **/
 app.delete('/deleteUserByEmail/:email', userController.deleteUserByEmail);
@@ -41,15 +41,15 @@ app.delete('/deleteUserByEmail/:email', userController.deleteUserByEmail);
 /**************** Track controller:  ****************/
 
 /** insertTrack
-    values not null:
-        type, title, startPoint, endPoint
+    values required:
+        type, title, startPoint-id, endPoint-id
     values can be null:
         middlePoint, comment, rating, diffucultyLevel, changesDuringTrack
 **/
 app.post('/insertTrack/', trackController.insertTrack);
 
 /** deleteTrackBytitle
-    values not null:
+    values required:
          title
 **/
 app.delete('/deleteTrackBytitle/:title', trackController.deleteTrackBytitle);
@@ -58,16 +58,16 @@ app.delete('/deleteTrackBytitle/:title', trackController.deleteTrackBytitle);
 /**************** PointsController controller:  ****************/
 
 // /** insertPoint
-//     values not null:
+//     values required:
 //         longtitude, latitude
 // **/
 app.post('/insertPoint', PointController.insertPoint);
 
 // /** deletePointById
-//     values not null:
+//     values required:
 //          id
 // **/
-// app.delete('/deletePointById/:id', PointController.deletePointById);
+app.delete('/deletePointById/:id', PointController.deletePointById);
 
 
 

@@ -1,15 +1,35 @@
 var   mongoose    = require('mongoose');
 var   point       = require('./PointSchema');
 
+function isUnique(_title){
+      this.model('TrackSchema').find({title:_title}, (err,track)=>{
+            if(err){
+                  console.log(err);
+                  return false;
+            }
+            if(track == "")   // not found
+                  return true;
+            else  // title exist
+                  return false;
+      })
+}
+
+
+findSimilarType = function findSimilarType (cb) {
+      return this.model('Animal').find({ type: this.type }, cb);
+    };
+
 var TrackSchema = new mongoose.Schema({
       id: mongoose.Schema.Types.ObjectId,
       startPoint: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "PointSchema"
+            ref: "PointSchema",
+            required: true
       },
       endPoint: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "PointSchema"
+            ref: "PointSchema",
+            required: true
       },
       middlePoint: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -21,7 +41,9 @@ var TrackSchema = new mongoose.Schema({
       },
       title: {
             type: String,
-            required: true
+            required: true,
+            unique: true,
+            validate: isUnique
       },
       comment: [String],
       rating: {

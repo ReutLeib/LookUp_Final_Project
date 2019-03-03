@@ -12,7 +12,7 @@ exports.insertTrack = (req,res)=>{
       newTrack.save(err => {
             if (err){
               console.log(err);
-              return res.status(500).send({ "Message": "Internal server error" });
+              return res.status(500).send(err);
             }
             console.log(`Track ${req.body.title} has been created successfully`);
             res.status(200).send(`Track ${req.body.title} has been created successfully`);
@@ -20,6 +20,20 @@ exports.insertTrack = (req,res)=>{
 
 
 };
+
+// exports.isUnique = (_title) => {    // return boolean
+
+//       Track.find({title:_title}, (err,track)=>{
+//             if(err){
+//                   console.log(err);
+//                   return false;
+//             }
+//             if(track == "")   // not found
+//                   return true;
+//             else  // title exist
+//                   return false;
+//       })
+// } 
 
 ////////////////////////////////////////////////////////////////////////////////////
 
