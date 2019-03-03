@@ -1,16 +1,15 @@
 var   express         = require('express'),
-    //   event           = require('events'),
       bodyParser      = require('body-parser'),
       fs              = require('fs'),
-      userCtl         = require('./controllers/User_ctl.js'),
-      trackCtl        = require('./controllers/Track_ctl.js'),
+      userController         = require('./controllers/UserController.js'),
+      trackController        = require('./controllers/TrackController.js'),
       app             = express();
       port            = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port',port);
-// app.use('/', express.static('./public/html'));//for API 
+// app.use('/', express.static('./public/html'));//for API
 
 app.use((req,res,next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -23,36 +22,36 @@ app.use((req,res,next) => {
 
 /**************** User controller: ****************/
 
-/** insertUser 
+/** insertUser
     values not null:
         name, email, password, accessibility
     values can be null:
         disables, birthDay, profilePicture
 **/
-app.post('/insertUser/', userCtl.insertUser);
+app.post('/insertUser', userController.insertUser);
 
-/** deleteUserByEmail 
+/** deleteUserByEmail
     values not null:
         email
 **/
-app.delete('/deleteUserByEmail/:email', userCtl.deleteUserByEmail);
+app.delete('/deleteUserByEmail/:email', userController.deleteUserByEmail);
 
 
 /**************** Track controller:  ****************/
 
-/** insertTrack 
+/** insertTrack
     values not null:
         type, title, startPoint, endPoint
     values can be null:
-        middlePoint, comment, rating, diffucultyLevel, changesDuringTrack 
+        middlePoint, comment, rating, diffucultyLevel, changesDuringTrack
 **/
-app.post('/insertTrack/', trackCtl.insertTrack);
+app.post('/insertTrack/', trackController.insertTrack);
 
-/** deleteTrackBytitle 
+/** deleteTrackBytitle
     values not null:
-         title 
+         title
 **/
-app.delete('/deleteTrackBytitle/:title', trackCtl.deleteTrackBytitle);
+app.delete('/deleteTrackBytitle/:title', trackController.deleteTrackBytitle);
 
 
 //////////////////////////////////////////////////////////////////////////////

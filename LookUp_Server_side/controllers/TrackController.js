@@ -1,7 +1,7 @@
 const mongoose          = require('mongoose');
       // schemas:
-var   User              = require('../models/User_Schema');
-      Track             = require('../models/Track_Schema');
+var   User              = require('../models/UserSchema');
+      Track             = require('../models/TrackSchema');
 
 /************************** ROUTE: insertTrack **************************/
 
