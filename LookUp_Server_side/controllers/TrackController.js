@@ -9,13 +9,13 @@ exports.insertTrack = (req,res)=>{
   
       console.log("Enter route(POST): /insertTrack");
       const newTrack = new Track(req.body);
-      newUser.save(err => {
+      newTrack.save(err => {
             if (err){
               console.log(err);
               return res.status(500).send({ "Message": "Internal server error" });
             }
-            console.log(`User ${req.body.email} has been created successfully`);
-            res.status(200).send(`User ${req.body.email} has been created successfully`);
+            console.log(`Track ${req.body.title} has been created successfully`);
+            res.status(200).send(`Track ${req.body.title} has been created successfully`);
       });
 
 

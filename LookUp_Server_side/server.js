@@ -1,8 +1,9 @@
 var   express         = require('express'),
       bodyParser      = require('body-parser'),
       fs              = require('fs'),
-      userController  = require('./controllers/UserController.js'),
-      trackController = require('./controllers/TrackController.js'),
+      userController  = require('./controllers/UserController'),
+      trackController = require('./controllers/TrackController'),
+      PointController = require('./controllers/PointsController'),
       app             = express();
       port            = process.env.PORT || 3000;
 
@@ -54,7 +55,26 @@ app.post('/insertTrack/', trackController.insertTrack);
 app.delete('/deleteTrackBytitle/:title', trackController.deleteTrackBytitle);
 
 
+/**************** PointsController controller:  ****************/
+
+// /** insertPoint
+//     values not null:
+//         longtitude, latitude
+// **/
+app.post('/insertPoint', PointController.insertPoint);
+
+// /** deletePointById
+//     values not null:
+//          id
+// **/
+// app.delete('/deletePointById/:id', PointController.deletePointById);
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////
+
+
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });

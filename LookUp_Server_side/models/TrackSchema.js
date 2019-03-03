@@ -1,20 +1,19 @@
-var mongoose = require('mongoose');
+var   mongoose    = require('mongoose');
+var   point       = require('./PointSchema');
 
 var TrackSchema = new mongoose.Schema({
       id: mongoose.Schema.Types.ObjectId,
       startPoint: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "LatLangBounds",
-            required: true
+            ref: "PointSchema"
       },
       endPoint: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "LatLangBounds",
-            required: true
+            ref: "PointSchema"
       },
       middlePoint: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "LatLangBounds"
+            ref: "PointSchema"
       }],
       type: {
             type: String,

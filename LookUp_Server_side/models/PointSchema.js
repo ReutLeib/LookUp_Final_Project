@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
 
-var LatLangBoundsSchema = new mongoose.schema({
+var PointSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
-    Longtitude: {
+    longtitude: {
         type: Number,
         required: true
     },
-    Latitude: {
+    latitude: {
         type: Number,
         required: true
     }
 });
 
-module.exports = mongoose.model("LatLangBoundsSchema", LatLangBoundsSchema, "LatLangBounds");
+module.exports = mongoose.model("PointSchema", PointSchema, "Points");
